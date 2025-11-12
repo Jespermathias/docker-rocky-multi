@@ -10,7 +10,7 @@ RUN mkdir -p /var/run/sshd && ssh-keygen -A && echo 'root:wordpass' | chpasswd
 # Create ansible user and set password
 RUN adduser ansible && echo "ansible:ansible" | chpasswd
 
-# Create dirs if missing and add ansible user
+# Create directories if missing and add ansible user
 RUN mkdir -p /etc/sudoers.d
 RUN echo "ansible ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/ansible
 
