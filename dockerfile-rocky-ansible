@@ -13,7 +13,6 @@ RUN adduser ansible && echo "ansible:ansible" | chpasswd
 # Create dirs if missing and add ansible user
 RUN mkdir -p /etc/sudoers.d
 RUN echo "ansible ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/ansible
-#RUN chmod 440 /etc/sudoers.d/ansible
 
 # Enable password-based SSH login
 RUN sed -i 's/^#PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
