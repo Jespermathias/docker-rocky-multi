@@ -1,0 +1,91 @@
+# docker-compose.yml for rocky ssh container multi deployment
+
+services:
+
+  rockyc:
+    build:
+      context: .
+      dockerfile: dockerfile-rocky-ansible
+    hostname: rockyc
+    container_name: rocky-control
+    ports:
+      - 2220:22
+    privileged: true
+    tty: true
+    networks:
+      docknet:
+        ipv4_address: 10.100.2.10
+    stdin_open: true
+    extra_hosts:
+      - "rockyc:10.100.2.10"
+      - "rocky1:10.100.2.11"
+      - "rocky2:10.100.2.12"
+      - "rocky3:10.100.2.13"
+
+  rocky1:
+    build:
+      context: .
+      dockerfile: dockerfile-rocky-ansible
+    hostname: rocky1
+    container_name: rocky-one
+    ports:
+      - 2221:22
+    privileged: true
+    tty: true
+    networks:
+      docknet:
+        ipv4_address: 10.100.2.11
+    stdin_open: true
+    extra_hosts:
+      - "rockyc:10.100.2.10"
+      - "rocky1:10.100.2.11"
+      - "rocky2:10.100.2.12"
+      - "rocky3:10.100.2.13"
+
+  rocky2:
+    build:
+      context: .
+      dockerfile: dockerfile-rocky-ansible
+    hostname: rocky2
+    container_name: rocky-two
+    ports:
+      - 2222:22
+    privileged: true
+    tty: true
+    networks:
+      docknet:
+        ipv4_address: 10.100.2.12
+    stdin_open: true
+    extra_hosts:
+      - "rockyc:10.100.2.10"
+      - "rocky1:10.100.2.11"
+      - "rocky2:10.100.2.12"
+      - "rocky3:10.100.2.13"
+
+  rocky3:
+    build:
+      context: .
+      dockerfile: dockerfile-rocky-ansible
+    hostname: rocky3
+    container_name: rocky-three
+    ports:
+      - 2223:22
+    privileged: true
+    tty: true
+    networks:
+      docknet:
+        ipv4_address: 10.100.2.13
+    stdin_open: true
+    extra_hosts:
+      - "rockyc:10.100.2.10"
+      - "rocky1:10.100.2.11"
+      - "rocky2:10.100.2.12"
+      - "rocky3:10.100.2.13"
+
+networks:
+  docknet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.100.2.0/24
+          gateway: 10.100.2.1
