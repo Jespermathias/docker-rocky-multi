@@ -25,6 +25,7 @@ COPY password.txt /home/ansible/password.txt
 
 # Modify permissions for keygen-tool and password.txt
 RUN chown ansible:ansible /home/ansible/keygen-tool.sh
+RUN chmod +x /home/ansible/keygen-tool.sh
 RUN chown ansible:ansible /home/ansible/password.txt
 
 
