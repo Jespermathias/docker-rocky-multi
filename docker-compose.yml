@@ -5,7 +5,7 @@ services:
   rockyc:
     build:
       context: .
-      dockerfile: dockerfile-rocky-ansible
+      dockerfile: dockerfile-rocky-control
     hostname: rockyc
     container_name: rocky-control
     ports:
@@ -25,7 +25,7 @@ services:
   rocky1:
     build:
       context: .
-      dockerfile: dockerfile-rocky-ansible
+      dockerfile: dockerfile-rocky-node
     hostname: rocky1
     container_name: rocky-one
     ports:
@@ -45,7 +45,7 @@ services:
   rocky2:
     build:
       context: .
-      dockerfile: dockerfile-rocky-ansible
+      dockerfile: dockerfile-rocky-node
     hostname: rocky2
     container_name: rocky-two
     ports:
@@ -65,7 +65,7 @@ services:
   rocky3:
     build:
       context: .
-      dockerfile: dockerfile-rocky-ansible
+      dockerfile: dockerfile-rocky-node
     hostname: rocky3
     container_name: rocky-three
     ports:
