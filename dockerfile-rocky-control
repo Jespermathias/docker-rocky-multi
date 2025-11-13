@@ -3,7 +3,7 @@
 FROM rockylinux:9.3
 
 # Install needed components for image
-RUN dnf -y install openssh-server vim iptables iputils sudo ansible-core && dnf clean all
+RUN dnf -y install openssh-server vim iptables iputils iproute sudo ansible-core && dnf clean all
 
 # Create needed directories, create ssh key and change root password
 RUN mkdir -p /var/run/sshd && ssh-keygen -A && echo 'root:wordpass' | chpasswd
@@ -11,7 +11,7 @@ RUN mkdir -p /var/run/sshd && ssh-keygen -A && echo 'root:wordpass' | chpasswd
 # Create ansible user and set password
 RUN adduser ansible && echo "ansible:ansible" | chpasswd
 
-# Create dirs if missing and add ansible user
+# Create directories if missing and add ansible user
 RUN mkdir -p /etc/sudoers.d
 RUN echo "ansible ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/ansible
 

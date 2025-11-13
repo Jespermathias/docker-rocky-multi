@@ -3,7 +3,7 @@
 FROM rockylinux:9.3
 
 # Install needed components for image
-RUN dnf -y install openssh-server vim iptables iputils sudo && dnf clean all
+RUN dnf -y install openssh-server vim iptables iputils iproute sudo && dnf clean all
 
 # Create needed directories, create ssh key and change root password
 RUN mkdir -p /var/run/sshd && ssh-keygen -A && echo 'root:wordpass' | chpasswd
